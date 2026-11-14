@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Movement Lab · RuView</title>
+  <link rel="stylesheet" href="/ui/movement.css">
+  <script src="/ui/movement.js" defer></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="top"><a href="/" class="back">← RuView Bedroom</a><span class="eyebrow">TWO-NODE ROOM SENSING</span></header>
+    <section class="hero"><div><p class="eyebrow">MOVEMENT LAB / 11 × 10 FT</p><h1>Feel the room change.</h1><p class="sub">Two Wi-Fi sensing nodes, one honest room-wide movement signal. Calibrate your actual space before trusting alerts.</p></div><div id="overall" class="overall" role="status" aria-live="polite">Connecting…</div></section>
+    <section class="layout">
+      <div class="room-panel panel"><div class="section-top"><div><p class="eyebrow">YOUR SETUP</p><h2>Bedroom layout</h2></div><span class="small">Approximate placement · not live position</span></div><div class="room"><div class="desk"><span>UPPER-RIGHT DESK</span><strong>● Node 2</strong></div><div class="bed">BED</div><div class="foot"><strong>● Node 1</strong><span>INSIDE · SHARED WALL</span></div><div class="router">TV wall ↓ &nbsp; Router in living room</div></div><p class="caption">The diagram shows where devices sit, not where a person is. CSI changes cannot reliably identify a person or pinpoint coordinates.</p></div>
+      <div class="nodes"><div class="panel node" id="node-1"><div class="section-top"><div><p class="eyebrow">SENSOR 01</p><h2>Shared-wall node</h2></div><span class="pill">Checking</span></div><div class="number"><strong class="change">—</strong><span>CSI change</span></div><div class="meter"><i></i></div><div class="node-meta"><span class="threshold">No baseline</span><span class="rssi">—</span></div><canvas width="520" height="80" aria-label="Recent shared-wall-node signal"></canvas></div><div class="panel node" id="node-2"><div class="section-top"><div><p class="eyebrow">SENSOR 02</p><h2>Upper-right desk node</h2></div><span class="pill">Checking</span></div><div class="number"><strong class="change">—</strong><span>CSI change</span></div><div class="meter"><i></i></div><div class="node-meta"><span class="threshold">No baseline</span><span class="rssi">—</span></div><canvas width="520" height="80" aria-label="Recent upper-right desk-node signal"></canvas></div></div>
+    </section>
+    <section class="panel calibrate">
+      <div class="section-top"><div><p class="eyebrow">LEARN A LITTLE AT A TIME</p><h2>Add to your calibration</h2></div><span id="calibration-state" class="small">Loading saved profile…</span></div>
+      <p class="sub">Every completed trial is saved. Repeat any condition, in any order. You can stay in the room for a sitting-still trial.</p>
+      <div class="learning-controls">
+        <label>What will you do?<select id="trial-label"><option value="still">Sit still — stay in the room</option><option value="walk_node1">Walk near Node 1 — shared wall</option><option value="walk_node2">Walk near Node 2 — upper-right desk</option><option value="walk_room">Walk around the room</option><option value="empty">Empty room — leave during countdown</option></select></label>
+        <label>Trial purpose<select id="trial-purpose"><option value="learn">Learn — add this example</option><option value="check">Check — measure without changing detector</option></select></label>
+      </div>
+      <p id="trial-instructions" class="caption">Sit still for 20 seconds. This teaches normal signal variation while you are seated; it does not represent an empty room.</p>
+      <div class="actions"><button id="start-trial" type="button" disabled>Start 20-second trial</button><button id="cancel-trial" type="button" class="secondary" hidden>Cancel</button><button id="retry-trial" type="button" class="secondary" hidden>Retry saving trial</button><button id="discard-trial" type="button" class="secondary" hidden>Discard unsaved trial</button></div>
+      <p id="progress" role="status" aria-live="polite">Connecting to both nodes…</p>
+      <div class="result"><strong id="learning-guidance">Loading history…</strong><p id="learning-counts"></p><p id="training-summary"></p><p id="check-summary"></p></div>
+      <p class="caption">Saved thresholds from the old calibration are retained as a starting point. Its original readings were not saved, so they cannot be added to the new trial history. Keep node/router positions fixed while collecting this history.</p>
+      <h3>Recent trials</h3><div id="trial-history" class="trial-history" aria-live="polite"></div>
+    </section>
+    <p class="footnote">Experimental room movement sensing. Not occupancy proof, fall detection, security, or medical monitoring. Movement events are not yet connected to lights or locks.</p>
+  </main>
+</body>
+</html>

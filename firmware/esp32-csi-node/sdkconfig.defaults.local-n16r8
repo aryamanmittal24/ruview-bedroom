@@ -1,0 +1,7 @@
+# Local build overlay for the connected ESP32-S3-DevKitC-1 N16R8.
+# Keep display support off and use the repository's 16 MB partition layout.
+# CONFIG_DISPLAY_ENABLE is not set
+# CONFIG_ESPTOOLPY_FLASHSIZE_8MB is not set
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+CONFIG_ESPTOOLPY_FLASHSIZE="16MB"
+CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions_16mb.csv"
